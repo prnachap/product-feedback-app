@@ -1,0 +1,54 @@
+@import "./variables";
+@import "./typograhpy";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Jost, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background: $light-grayish-blue;
+  font-size: 1rem;
+  line-height: 23px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.33px;
+  line-height: 35px;
+}
+h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.25px;
+  line-height: 29px;
+}
+h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.25px;
+  line-height: 26px;
+}
+h4 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  line-height: 20px;
+}

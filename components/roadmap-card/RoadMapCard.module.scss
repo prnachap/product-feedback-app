@@ -1,0 +1,63 @@
+@import "../../styles/variables";
+@import "../../styles/typograhpy";
+
+.card {
+  padding: 19px 24px 18px 24px;
+  border-radius: $border-radius;
+  background: $white;
+  width: 223px;
+
+  .titleWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .link {
+      @include bodyStyleThree;
+      text-decoration: underline;
+      transition: all $transition-time $transition-function;
+
+      &:hover {
+        color: $light-royal-blue;
+      }
+    }
+  }
+
+  .contentWrapper {
+    color: $desaturated-dark-blue;
+    display: flex;
+    flex-direction: column;
+    text-transform: capitalize;
+    margin-top: 24px;
+    gap: 8px;
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .statusWrapper {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        .circle {
+          height: 8px;
+          width: 8px;
+          border-radius: 100%;
+        }
+        .planned {
+          background: $soft-red;
+        }
+        .in-progress {
+          background: $violet;
+        }
+        .live {
+          background: $soft-blue;
+        }
+      }
+    }
+    .count {
+      font-weight: 700;
+    }
+  }
+}

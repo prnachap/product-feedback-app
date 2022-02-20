@@ -1,0 +1,24 @@
+@import "../../styles/variables";
+
+.pill {
+  color: $royal-blue;
+  background: $very-pale-blue;
+  border-radius: $border-radius;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 19px;
+  padding: 0.3125rem 1rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  transition: all $transition-time $transition-function;
+
+  &Active {
+    color: $white;
+    background: $royal-blue;
+  }
+  &:hover {
+    background: $pale-grayish-blue;
+  }
+}
