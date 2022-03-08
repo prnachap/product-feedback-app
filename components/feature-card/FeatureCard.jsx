@@ -1,4 +1,4 @@
-import Pill from "../pill/Pill";
+import Pill from "../../ui/pill/Pill";
 import styles from "./FeatureCard.module.scss";
 
 const featureFilterOptions = [

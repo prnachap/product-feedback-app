@@ -1,0 +1,11 @@
+.SuggestionList {
+  padding: 0rem 1.5rem;
+
+  & > *:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (min-width: 769px) {
+    padding: 0;
+  }
+}

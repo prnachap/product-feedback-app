@@ -1,0 +1,81 @@
+@import "../../styles/variables";
+
+.button {
+  border-radius: $border-radius;
+  border: none;
+  color: $very-pale-blue;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18.79px;
+  padding: 10.5px 16px;
+  outline: none;
+  @media screen and (min-width: 769px) {
+    font-size: 14px;
+    line-height: 20.23px;
+    padding: 12.5px 24px;
+  }
+}
+
+// Primary Button
+.primary {
+  background: $violet;
+  transition: all $transition-time $transition-function;
+
+  &:hover {
+    background: $light-violet;
+  }
+}
+
+// Secondary Button
+.secondary {
+  background: $royal-blue;
+  transition: all $transition-time $transition-function;
+
+  &:hover {
+    background: $light-royal-blue;
+  }
+}
+
+// tertiary
+.tertiary {
+  background: $moderate-dark-blue;
+  transition: all $transition-time $transition-function;
+
+  &:hover {
+    background: $desaturated-dark-blue;
+  }
+}
+
+// danger
+.danger {
+  background: $red;
+  transition: all $transition-time $transition-function;
+
+  &:hover {
+    background: $light-red;
+  }
+}
+
+// destructive
+.destructive {
+  padding: 0;
+  background: transparent;
+  color: $desaturated-dark-blue;
+  transition: all $transition-time $transition-function;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// dark
+.dark {
+  background: $very-dark-blue;
+  transition: all $transition-time $transition-function;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
