@@ -1,13 +1,14 @@
 import Link from "next/link";
 import cls from "classnames";
-import styles from "./RoadMapCard.module.scss";
+
+import styles from "./StatusBoard.module.scss";
 
 const statusList = [
   { name: "planned", count: 1 },
   { name: "in-progress", count: 2 },
   { name: "live", count: 3 },
 ];
-const RoadMapCard = () => {
+const StatusBoard = () => {
   return (
     <div className={styles.card}>
       <div className={styles.titleWrapper}>
@@ -33,4 +34,4 @@ const RoadMapCard = () => {
   );
 };
 
-export default RoadMapCard;
+export default StatusBoard;

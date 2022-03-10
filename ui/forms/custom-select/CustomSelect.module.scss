@@ -1,0 +1,74 @@
+@import "../../../styles/variables";
+@import "../../../styles/typograhpy";
+
+.selectWrapper {
+  position: relative;
+}
+
+.labelWrapper {
+  display: inline-block;
+  background: $very-dark-blue;
+  border-radius: $border-radius;
+}
+
+.label,
+.subLabel {
+  font-size: 0.8125rem;
+  line-height: 19px;
+  font-weight: 400;
+  color: $very-pale-blue;
+  cursor: pointer;
+}
+
+.subLabel {
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.icon > path {
+  stroke: $very-pale-blue;
+}
+
+.inputWrapper {
+  background: $light-grayish-blue;
+  padding: 13px 24px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activeInput {
+  border: 1px solid $royal-blue;
+}
+
+.dropdown {
+  @include bodyStyleTwo;
+  list-style: none;
+  background: $white;
+  width: 15.93rem;
+  border-radius: $border-radius;
+  box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.350492);
+  text-align: left;
+  color: $desaturated-dark-blue;
+  position: absolute;
+  left: 0;
+  top: 4rem;
+
+  & > li {
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: capitalize;
+    transition: all $transition-time $transition-function;
+    &:hover {
+      color: $violet;
+    }
+  }
+
+  & > *:not(:last-child) {
+    border-bottom: 1px solid rgba($moderate-dark-blue, 0.3);
+  }
+}

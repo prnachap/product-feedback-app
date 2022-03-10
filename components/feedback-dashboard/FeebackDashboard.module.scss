@@ -1,0 +1,19 @@
+.container {
+  max-width: 71.06rem;
+  width: 90%;
+  margin: 5.875rem auto 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  justify-content: center;
+  grid-column-gap: 1.875rem;
+
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: 1fr;
+    grid-column-gap: 0;
+  }
+  @media screen and (max-width: 769px) {
+    width: 100%;
+    margin-top: 0;
+  }
+}
