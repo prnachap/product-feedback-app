@@ -7,4 +7,9 @@
   & > * {
     margin: 14px 8px 0 0;
   }
+
+  .active {
+    color: $white;
+    background: $royal-blue;
+  }
 }

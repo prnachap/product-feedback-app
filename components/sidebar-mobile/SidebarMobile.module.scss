@@ -14,7 +14,9 @@
 .mobileSideBar {
   background: $light-grayish-blue;
   height: 100vh;
-  position: relative;
+  position: absolute;
+  top: 72px;
+  left: 0;
   width: 80%;
   z-index: 2;
 

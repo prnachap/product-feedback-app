@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import cls from "classnames";
-import SelectContext from "../../../context/select-context/SelectContext";
+import SelectContext from "../../../context/select/SelectContext";
 import { useSelectContext } from "../../../hooks/useSelectContext";
 import CheckIcon from "../../../public/assets/shared/icon-check.svg";
 

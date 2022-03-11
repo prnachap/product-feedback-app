@@ -13,13 +13,17 @@
   padding: 0.375rem 1rem;
   text-transform: capitalize;
   outline: none;
-  transition: all $transition-time $transition-function;
+  transition: background-color $transition-time $transition-function;
+
+  &Upper {
+    text-transform: uppercase;
+  }
 
   &Active {
     color: $white;
     background: $royal-blue;
   }
-  &:hover {
+  &:hover:not(.pillActive) {
     background: $pale-grayish-blue;
   }
 }

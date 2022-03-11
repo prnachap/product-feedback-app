@@ -21,7 +21,7 @@
 // Primary Button
 .primary {
   background: $violet;
-  transition: all $transition-time $transition-function;
+  transition: background-color $transition-time $transition-function;
 
   &:hover {
     background: $light-violet;
@@ -31,7 +31,7 @@
 // Secondary Button
 .secondary {
   background: $royal-blue;
-  transition: all $transition-time $transition-function;
+  transition: background-color $transition-time $transition-function;
 
   &:hover {
     background: $light-royal-blue;
@@ -41,7 +41,7 @@
 // tertiary
 .tertiary {
   background: $moderate-dark-blue;
-  transition: all $transition-time $transition-function;
+  transition: background-color $transition-time $transition-function;
 
   &:hover {
     background: $desaturated-dark-blue;
@@ -51,7 +51,7 @@
 // danger
 .danger {
   background: $red;
-  transition: all $transition-time $transition-function;
+  transition: background-color $transition-time $transition-function;
 
   &:hover {
     background: $light-red;
@@ -63,7 +63,7 @@
   padding: 0;
   background: transparent;
   color: $desaturated-dark-blue;
-  transition: all $transition-time $transition-function;
+  transition: background-color $transition-time $transition-function;
 
   &:hover {
     text-decoration: underline;
@@ -73,7 +73,7 @@
 // dark
 .dark {
   background: $very-dark-blue;
-  transition: all $transition-time $transition-function;
+  transition: background-color $transition-time $transition-function;
 
   &:hover {
     text-decoration: underline;

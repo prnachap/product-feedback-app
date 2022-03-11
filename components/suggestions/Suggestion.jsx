@@ -13,12 +13,14 @@ const Suggestion = (props) => {
     <article>
       <Card className={styles.suggestion}>
         <Pill className={styles.votes}>
-          <ArrowUp /> <span>{upvotes}</span>
+          <ArrowUp /> <span className={styles.category}>{upvotes}</span>
         </Pill>
         <div className={styles.contentWrapper}>
           <h3 className={styles.title}>{title}</h3>
           <p className={styles.description}>{description}</p>
-          <Pill>{category}</Pill>
+          <Pill className={styles.noHover}>
+            <span>{category}</span>
+          </Pill>
         </div>
         <div className={styles.commentWrapper}>
           <Image

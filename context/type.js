@@ -1,0 +1,4 @@
+export const actionTypes = {
+  GET_FEEDBACK_DATA: "GET_FEEDBACK_DATA",
+  SET_FEEDBACK_DATA: "SET_FEEDBACK_DATA",
+};

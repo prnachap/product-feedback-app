@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 
-import ToggleSidebarContext from "../../context/toggle-sidebar-context/ToggleSidebarContext";
+import ToggleSidebarContext from "../../context/toggle-sidebar/ToggleSidebarContext";
 import { hamburgerVaraint } from "../animation";
 
 import styles from "./Logo.module.scss";

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import FilterBoard from "../filter-board";
 import StatusBoard from "../status-board";
 import { overlayVariants, sidebarVariants } from "../animation";
-import ToggleSidebarContext from "../../context/toggle-sidebar-context/ToggleSidebarContext";
+import ToggleSidebarContext from "../../context/toggle-sidebar/ToggleSidebarContext";
 
 import styles from "./SidebarMobile.module.scss";
 

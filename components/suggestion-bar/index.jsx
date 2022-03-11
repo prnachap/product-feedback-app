@@ -4,7 +4,7 @@ import Button from "../../ui/button/Button";
 import CustomSelect from "../../ui/forms/custom-select/CustomSelect";
 import PlusIcon from "../../public/assets/shared/icon-plus.svg";
 import SuggestionIcon from "../../public/assets/suggestions/icon-suggestions.svg";
-import { typeList } from "../../constants/typelist";
+import { typeList } from "../../constants";
 
 import styles from "./Suggestion.module.scss";
 
