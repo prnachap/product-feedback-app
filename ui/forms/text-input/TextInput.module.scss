@@ -1,0 +1,9 @@
+@import "../../../styles/variables";
+.inputWrapper {
+  position: relative;
+  .error {
+    position: absolute;
+    left: 0;
+    bottom: -16px;
+  }
+}

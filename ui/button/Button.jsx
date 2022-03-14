@@ -9,7 +9,8 @@ const defaultProps = {
 };
 
 const Button = (props) => {
-  const { children, className, href, as, variant, ...restProps } = props;
+  const { children, className, href, as, variant, onClick, ...restProps } =
+    props;
 
   let Component = as;
 

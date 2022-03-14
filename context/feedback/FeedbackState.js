@@ -1,11 +1,12 @@
 import { useReducer } from "react";
 import { actionTypes } from "../type";
-import FeedbackContext from "./FeedBackContext";
+import FeedBackContext from "./FeedBackContext";
 import feedbackReducer from "./feedbackReducer";
 
-const FeedbackState = ({ children }) => {
+const FeedBackState = ({ children }) => {
   const initialState = {
     feedback: [],
+    category: "all",
   };
 
   const [state, dispatch] = useReducer(feedbackReducer, initialState);
@@ -14,11 +15,23 @@ const FeedbackState = ({ children }) => {
   const setData = (data) =>
     dispatch({ type: actionTypes.SET_FEEDBACK_DATA, payload: data });
 
+  // filterbycategory
+  const setCategory = (category) => {
+    dispatch({ type: actionTypes.SET_CATEGORY, payload: category });
+  };
+
+  // update votes
+  const updateVote = (id) => {
+    dispatch({ type: actionTypes.UPDATE_VOTE, payload: id });
+  };
+
   return (
-    <FeedbackContext.Provider value={{ state, setData }}>
+    <FeedBackContext.Provider
+      value={{ state, setData, setCategory, updateVote }}
+    >
       {children}
-    </FeedbackContext.Provider>
+    </FeedBackContext.Provider>
   );
 };
 
-export default FeedbackState;
+export default FeedBackState;

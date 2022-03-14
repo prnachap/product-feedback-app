@@ -1,0 +1,33 @@
+@import "../../styles/variables";
+@import "../../styles/typograhpy";
+
+.container {
+  background: $white;
+  border-radius: $border-radius;
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: 1000px) {
+    height: 70vh;
+  }
+
+  .title {
+    color: $moderate-dark-blue;
+  }
+
+  .description {
+    @include bodyStyleOne;
+    color: $desaturated-dark-blue;
+    max-width: 25.625rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    width: 90%;
+    @media screen and (min-width: 796px) {
+      margin-bottom: 1.5rem;
+    }
+  }
+}

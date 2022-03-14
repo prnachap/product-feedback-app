@@ -3,15 +3,15 @@ import "../styles/globals.scss";
 
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import FeedbackState from "../context/feedback/FeedbackState";
+import FeedBackState from "../context/feedback/FeedBackState";
 
 const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <FeedbackState>
+      <FeedBackState>
         <Component {...pageProps} />
-      </FeedbackState>
+      </FeedBackState>
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 
 import ArrowUp from "../../public/assets/shared/icon-arrow-up.svg";
@@ -6,17 +6,36 @@ import Card from "../../ui/card/Card";
 import Pill from "../../ui/pill/Pill";
 
 import styles from "./Suggestion.module.scss";
+import { useQuery } from "react-query";
+import { updateVotes } from "../../services/updateVotes";
+import useFeedBackContext from "../../hooks/useFeedBackContext";
+import Link from "next/link";
 
 const Suggestion = (props) => {
-  const { title, description, category, upvotes, comments } = props;
+  const { id, title, description, category, upvotes, comments, index } = props;
+  const { updateVote } = useFeedBackContext();
+
+  const { data, refetch } = useQuery(["upVotes", id, upvotes], updateVotes, {
+    enabled: false,
+  });
+
+  useEffect(() => {
+    if (data) {
+      updateVote(index);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
+
   return (
     <article>
       <Card className={styles.suggestion}>
-        <Pill className={styles.votes}>
+        <Pill className={styles.votes} onClick={() => refetch()}>
           <ArrowUp /> <span className={styles.category}>{upvotes}</span>
         </Pill>
         <div className={styles.contentWrapper}>
-          <h3 className={styles.title}>{title}</h3>
+          <Link href={`/${id}`} passHref>
+            <h3 className={styles.title}>{title}</h3>
+          </Link>
           <p className={styles.description}>{description}</p>
           <Pill className={styles.noHover}>
             <span>{category}</span>

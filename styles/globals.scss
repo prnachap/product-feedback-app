@@ -53,6 +53,34 @@ h4 {
   line-height: 20px;
 }
 
+// form elements
+
+.input {
+  background: $light-grayish-blue;
+  border-radius: $border-radius-sm;
+  padding: 0.825rem 1.5rem;
+  width: 100%;
+  border: 1px solid transparent;
+  outline: none;
+  transition: border-color $transition-time $transition-function;
+
+  &:active,
+  &:focus {
+    border-color: $royal-blue;
+  }
+}
+
+// error state
+.error {
+  color: $red;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20.23px;
+}
+.input-error {
+  border-color: $red;
+}
+
 .container {
   max-width: 71.06rem;
   width: 90%;
@@ -70,5 +98,15 @@ h4 {
   @media screen and (max-width: 769px) {
     width: 100%;
     margin-top: 0;
+  }
+}
+
+.feedback-container {
+  max-width: 45.625rem;
+  width: 95%;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+  @media screen and (min-width: 769px) {
+    margin-bottom: 7.5rem;
   }
 }

@@ -1,0 +1,22 @@
+.navigationWrapper {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media screen and (min-width: 769px) {
+    margin-top: 3.5rem;
+  }
+
+  @media screen and (min-width: 1000px) {
+    margin-top: 5rem;
+  }
+}
+
+.feedbackWrapper {
+  margin-top: 1.5rem;
+}
+
+.commentWrapper {
+  margin-top: 1.5rem;
+}

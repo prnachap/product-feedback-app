@@ -1,0 +1,133 @@
+@import "../../../styles/variables";
+@import "../../../styles/typograhpy";
+
+.commentWrapper {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr 2.0625rem;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  position: relative;
+
+  // &:not(:last-child):not(.replyWrapper) {
+  //   padding-bottom: 1.5rem;
+  //   border-bottom: 1px solid rgba($light-grey, 0.25);
+  // }
+
+  // @media screen and (min-width: 769px) {
+  //   margin-top: 1.75rem;
+  //   grid-column-gap: 2rem;
+  // }
+}
+
+// .timeline {
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     left: 0;
+//     top: 30%;
+//     width: 1px;
+//     bottom: 168px;
+//     background: rgba($desaturated-dark-blue, 0.1);
+
+//     @media screen and (min-width: 769px) {
+//       top: 60px;
+//       left: 20px;
+//     }
+//   }
+// }
+
+// user profile picture
+.userImage {
+  border-radius: 50%;
+}
+
+// user details
+.name {
+  color: $moderate-dark-blue;
+}
+.userName {
+  color: $desaturated-dark-blue;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20.23px;
+}
+
+// buttons
+.replyButton {
+  @include bodyStyleThree;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: $royal-blue;
+  outline: none;
+  position: relative;
+  justify-self: flex-end;
+  align-self: flex-start;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0.5px;
+    opacity: 0;
+    background: $royal-blue;
+    transition: all $transition-time $transition-function;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+.postButton {
+  text-transform: capitalize;
+}
+
+// comment
+.description {
+  @include bodyStyleTwo;
+  color: $desaturated-dark-blue;
+  grid-column: 1/-1;
+
+  @media screen and (min-width: 769px) {
+    grid-column: 2/-1;
+  }
+}
+
+// add comment input
+.inputWrapper {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 1rem;
+  margin-top: 1rem;
+
+  @media screen and (min-width: 769px) {
+    grid-template-columns: 3fr 1fr;
+    grid-column: 2/-1;
+    grid-column-gap: 1rem;
+    align-items: flex-start;
+    margin-top: 1.5rem;
+  }
+}
+
+// replies container
+.replyWrapper {
+  grid-column: 1/-1;
+  margin-left: 40px;
+  margin-top: 1.625rem;
+
+  @media screen and (min-width: 769px) {
+    margin-top: 2rem;
+  }
+}
+
+.replyingTo {
+  @include bodyStyleTwo;
+  color: $violet;
+  font-weight: 700;
+  margin-right: 4px;
+}

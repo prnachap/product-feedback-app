@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-const FeedbackContext = createContext();
-FeedbackContext.displayName = "FeedbackContext";
+const FeedBackContext = createContext();
+FeedBackContext.displayName = "FeedbackSuggestionContext";
 
-export default FeedbackContext;
+export default FeedBackContext;
