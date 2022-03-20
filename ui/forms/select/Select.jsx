@@ -102,6 +102,9 @@ const Select = (props) => {
             <span>{inputValue}</span>
             <motion.svg
               className={styles.icon}
+              initial="initial"
+              animate={openMenu ? "hover" : "initial"}
+              variants={iconHovervariant}
               width="10"
               height="7"
               xmlns="http://www.w3.org/2000/svg"

@@ -59,11 +59,11 @@ export const overlayVariants = {
 export const menuVariants = {
   initial: {
     opacity: 0,
-    y: "-1000vh",
+    // y: "-1000vh",
   },
   final: {
     opacity: 1,
-    y: "0",
+    // y: "0",
     transition: {
       type: "tween",
       duration: 0.2,
@@ -71,7 +71,7 @@ export const menuVariants = {
   },
   exit: {
     opacity: 0,
-    y: "1000vh",
+    // y: "1000vh",
     transition: {
       type: "tween",
       duration: 0.2,
