@@ -47,11 +47,47 @@ export const overlayVariants = {
   final: {
     opacity: 1,
     type: "tween",
-    duration: 0.5,
+    duration: 2,
   },
   exit: {
     opacity: 0,
     type: "tween",
     duration: 0.5,
+  },
+};
+
+export const menuVariants = {
+  initial: {
+    opacity: 0,
+    y: "-1000vh",
+  },
+  final: {
+    opacity: 1,
+    y: "0",
+    transition: {
+      type: "tween",
+      duration: 0.2,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: "1000vh",
+    transition: {
+      type: "tween",
+      duration: 0.2,
+    },
+  },
+};
+
+export const iconHovervariant = {
+  initial: {
+    rotate: "0deg",
+  },
+  hover: {
+    rotate: "180deg",
+    transition: {
+      type: "tween",
+      duration: 0.4,
+    },
   },
 };

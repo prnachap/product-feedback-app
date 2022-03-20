@@ -1,15 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
-import Card from "../../../ui/card/Card";
-import Button from "../../../ui/button/Button";
+import React, { useState, useRef } from "react";
 import cls from "classnames";
-
-import styles from "./Comment.module.scss";
 import Image from "next/image";
+
+import Button from "../../../ui/button/Button";
 import TextInput from "../../../ui/forms/text-input/TextInput";
 
-import styled from "styled-components";
 import { CommentWrapper } from "./comment.style";
 import { useContainerHeight } from "../../../hooks/useContainerHeight";
+
+import styles from "./Comment.module.scss";
 
 const Comment = (props) => {
   const {
@@ -19,6 +18,9 @@ const Comment = (props) => {
     replies,
   } = props;
   const [showTextInput, setShowTextInput] = useState(false);
+  const [showReplyInput, setShowReplyInput] = useState(
+    Array(replies?.length ?? 0).fill(false)
+  );
   const [text, setText] = useState("");
   const [error, setError] = useState("");
   const replyContainerRef = useRef("");
@@ -49,6 +51,13 @@ const Comment = (props) => {
 
   const handleShowForm = () => {
     setShowTextInput(true);
+  };
+
+  const handleShowRepliesInput = (index) => () => {
+    const newState = showReplyInput.map((item, idx) => {
+      return index === idx ? !item : item;
+    });
+    setShowReplyInput(newState);
   };
 
   return (
@@ -118,14 +127,17 @@ const Comment = (props) => {
                   <h4 className={styles.name}>{name}</h4>
                   <span className={styles.userName}>{`@${username}`}</span>
                 </div>
-                <button className={styles.replyButton} onClick={handleShowForm}>
+                <button
+                  className={styles.replyButton}
+                  onClick={handleShowRepliesInput(index)}
+                >
                   Reply
                 </button>
                 <p className={styles.description}>
                   <span className={styles.replyingTo}>{`@${replyingTo}`}</span>
                   {content}
                 </p>
-                {showTextInput && (
+                {showReplyInput[index] && (
                   <form className={styles.inputWrapper} onSubmit={handleSubmit}>
                     <TextInput
                       name="user-reply"

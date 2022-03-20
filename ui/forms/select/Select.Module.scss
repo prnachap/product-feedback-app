@@ -1,0 +1,75 @@
+@import "../../../styles/typograhpy";
+@import "../../../styles/variables";
+
+.formContainer {
+  cursor: pointer;
+  position: relative;
+  .formGroup {
+    position: relative;
+  }
+  .svg {
+    position: absolute;
+    cursor: pointer;
+    right: 1rem;
+    top: 50%;
+  }
+  .labelWrapper {
+    background: $very-dark-blue;
+    border-radius: $border-radius;
+    padding: 8px 10px;
+  }
+
+  .label,
+  .subLabel {
+    font-size: 0.8125rem;
+    line-height: 19px;
+    font-weight: 400;
+    color: $very-pale-blue;
+    cursor: pointer;
+  }
+
+  .subLabel {
+    font-weight: 700;
+    text-transform: capitalize;
+
+    & > span {
+      margin-right: 9px;
+    }
+  }
+
+  .icon > path {
+    stroke: $very-pale-blue;
+  }
+
+  .menu {
+    @include bodyStyleTwo;
+    list-style: none;
+    background: $white;
+    width: 100%;
+    border-radius: $border-radius;
+    box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.350492);
+    text-align: left;
+    color: $desaturated-dark-blue;
+    position: absolute;
+    left: 0;
+    top: 4rem;
+    z-index: 4000;
+
+    & > li {
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: capitalize;
+      transition: all $transition-time $transition-function;
+      &:hover {
+        color: $violet;
+      }
+    }
+
+    & > *:not(:last-child) {
+      border-bottom: 1px solid rgba($moderate-dark-blue, 0.3);
+    }
+  }
+}

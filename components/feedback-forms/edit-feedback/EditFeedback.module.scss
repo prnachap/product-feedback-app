@@ -1,0 +1,79 @@
+@import "../../../styles/variables";
+@import "../../../styles/typograhpy";
+
+.container {
+  padding-top: 2.125rem;
+  max-width: 33.75rem;
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 8rem;
+
+  .buttonWrapper {
+    margin-bottom: 55px;
+
+    .backButton {
+      margin-left: 15px;
+    }
+
+    @media screen and (min-width: 769px) {
+      margin-bottom: 68px;
+    }
+  }
+  .feedbackIcon {
+    position: absolute;
+    top: -1.3rem;
+  }
+  .formContainer {
+    & > *:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .error {
+    position: absolute;
+    left: 0;
+    bottom: -21px;
+  }
+
+  .title,
+  .subTitle {
+    color: $moderate-dark-blue;
+  }
+  .description {
+    @include bodyStyleThree;
+    font-weight: 400;
+    color: $desaturated-dark-blue;
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+
+  .footerBtnWrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+    padding-top: 2rem;
+
+    .deleteBtnWrapper > button {
+      width: 100%;
+    }
+
+    .saveBtnWrapper {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 1rem;
+
+      @media screen and (min-width: 769px) {
+        flex-direction: row;
+      }
+    }
+
+    @media screen and (min-width: 769px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    padding-top: 3.5rem;
+  }
+}

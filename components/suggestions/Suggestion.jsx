@@ -1,15 +1,26 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-import ArrowUp from "../../public/assets/shared/icon-arrow-up.svg";
 import Card from "../../ui/card/Card";
 import Pill from "../../ui/pill/Pill";
 
-import styles from "./Suggestion.module.scss";
+import ArrowUp from "../../public/assets/shared/icon-arrow-up.svg";
 import { useQuery } from "react-query";
 import { updateVotes } from "../../services/updateVotes";
 import useFeedBackContext from "../../hooks/useFeedBackContext";
-import Link from "next/link";
+
+import styles from "./Suggestion.module.scss";
+
+const cardVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
 
 const Suggestion = (props) => {
   const { id, title, description, category, upvotes, comments, index } = props;
@@ -28,12 +39,12 @@ const Suggestion = (props) => {
 
   return (
     <article>
-      <Card className={styles.suggestion}>
+      <Card className={styles.suggestion} variants={cardVariants}>
         <Pill className={styles.votes} onClick={() => refetch()}>
           <ArrowUp /> <span className={styles.category}>{upvotes}</span>
         </Pill>
         <div className={styles.contentWrapper}>
-          <Link href={`/${id}`} passHref>
+          <Link href={`/feedback/${id}`} passHref>
             <h3 className={styles.title}>{title}</h3>
           </Link>
           <p className={styles.description}>{description}</p>

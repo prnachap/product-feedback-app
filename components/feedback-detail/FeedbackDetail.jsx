@@ -1,17 +1,22 @@
 import React from "react";
-import Button from "../../ui/button/Button";
-import ChevronLeft from "../../public/assets/shared/icon-arrow-left.svg";
-import styles from "./FeedbackDetail.module.scss";
-import { useQuery } from "react-query";
-import { useRouter } from "next/router";
-import { getFeedbackById } from "../../services/getFeedbackById";
-import Suggestion from "../suggestions/Suggestion";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
+import Button from "../../ui/button/Button";
+
+import AddComment from "../comments/add-comment";
+import ChevronLeft from "../../public/assets/shared/icon-arrow-left.svg";
 import CommentList from "../comments/comment-list";
+import Suggestion from "../suggestions/Suggestion";
+import { useQuery } from "react-query";
+import { getFeedbackById } from "../../services/getFeedbackById";
+
+import styles from "./FeedbackDetail.module.scss";
 
 const FeedbackDetail = () => {
   const {
     query: { id },
+    push,
   } = useRouter();
 
   const { isLoading, error, data } = useQuery(
@@ -21,6 +26,11 @@ const FeedbackDetail = () => {
       select: (data) => data.data,
     }
   );
+
+  const handleEditFeedback = () => {
+    push(`/edit-feedback/${id}`);
+  };
+
   return (
     <div>
       <nav className={styles.navigationWrapper}>
@@ -29,7 +39,10 @@ const FeedbackDetail = () => {
             <ChevronLeft /> Go Back
           </Button>
         </Link>
-        <Button variant="secondary">Edit Feedback</Button>
+
+        <Button variant="secondary" onClick={handleEditFeedback}>
+          Edit Feedback
+        </Button>
       </nav>
       <main>
         {isLoading && <div>is loading...</div>}
@@ -40,6 +53,9 @@ const FeedbackDetail = () => {
         )}
         <section className={styles.commentWrapper}>
           <CommentList {...data} />
+        </section>
+        <section>
+          <AddComment {...data} />
         </section>
       </main>
     </div>

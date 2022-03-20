@@ -8,10 +8,12 @@ import styles from "./Sidebar.module.scss";
 
 const Sidebar = () => {
   return (
-    <aside className={styles.sidebar}>
-      <BoardLogo />
-      <FilterBoard />
-      <StatusBoard />
+    <aside>
+      <div className={styles.sidebar}>
+        <BoardLogo />
+        <FilterBoard />
+        <StatusBoard />
+      </div>
     </aside>
   );
 };

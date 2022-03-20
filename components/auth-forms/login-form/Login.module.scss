@@ -1,0 +1,62 @@
+@import "../../../styles/typograhpy";
+@import "../../../styles/variables";
+
+.loginContainer {
+  max-width: 500px;
+  width: 90%;
+  margin: auto auto;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  .welcomeWrapper {
+    margin: 2rem 0;
+
+    .welcomeText {
+      @include bodyStyleTwo;
+      margin-top: 1rem;
+      color: $desaturated-dark-blue;
+    }
+  }
+
+  .form {
+    .formGroup {
+      .formLabel {
+        margin-bottom: 0.5rem;
+        display: inline-block;
+        color: $moderate-dark-blue;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20.23px;
+        letter-spacing: -0.19px;
+      }
+    }
+    .resetWrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      margin-top: 1rem;
+      color: $desaturated-dark-blue;
+
+      .checkbox {
+        margin-right: 4px;
+      }
+    }
+
+    & > button {
+      width: 100%;
+    }
+  }
+  .link {
+    color: $royal-blue;
+    font-weight: 400;
+  }
+  .register {
+    margin-top: 1.5rem;
+    display: inline-block;
+    color: $desaturated-dark-blue;
+  }
+  .mgBottom {
+    margin-bottom: 1.5rem;
+  }
+}

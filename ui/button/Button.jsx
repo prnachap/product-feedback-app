@@ -1,5 +1,6 @@
 import React from "react";
 import cls from "classnames";
+
 import styles from "./Button.module.scss";
 
 const defaultProps = {
@@ -9,8 +10,7 @@ const defaultProps = {
 };
 
 const Button = (props) => {
-  const { children, className, href, as, variant, onClick, ...restProps } =
-    props;
+  const { children, className, href, as, variant, ...restProps } = props;
 
   let Component = as;
 

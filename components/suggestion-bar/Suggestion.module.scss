@@ -8,9 +8,9 @@
   //   text-align: center
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr;
   align-items: center;
-  grid-column-gap: 1rem;
+  grid-column-gap: 0.3rem;
   margin-bottom: 2rem;
 
   .suggestionIcon {
@@ -59,7 +59,7 @@
 
   @media screen and (min-width: 769px) {
     border-radius: $border-radius;
-    grid-template-columns: 1.4375rem 1fr 1.2fr 2fr;
+    grid-template-columns: 1.4375rem 1fr 1.2fr 1.5fr;
     grid-column-gap: 1rem;
   }
 }

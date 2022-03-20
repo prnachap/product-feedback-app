@@ -1,24 +1,20 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 
-import useFeedBackContext from "../../hooks/useFeedBackContext";
-import { useFeedbackData } from "../../hooks/useFeedbackData";
 import Suggestion from "./Suggestion";
 import SuggestionEmpty from "./SuggestionEmpty";
+
+import useFeedBackContext from "../../hooks/useFeedBackContext";
+import { useFeedbackData } from "../../hooks/useFeedbackData";
 
 import styles from "./SuggestionList.module.scss";
 
 const parentCardVariant = {
-  initial: {
-    y: "1000vh",
-    opacity: 0,
-  },
-  final: {
-    y: "0vh",
-    opacity: 1,
+  hidden: {},
+  visible: {
     transition: {
-      type: "tween",
-      duration: 0.5,
+      when: "beforeChildren",
+      staggerChildren: 0.15,
     },
   },
 };
@@ -50,8 +46,8 @@ const SuggestionList = () => {
 
   return (
     <motion.div
-      initial="initial"
-      animate="final"
+      initial="hidden"
+      animate="visible"
       variants={parentCardVariant}
       className={styles.SuggestionList}
     >
@@ -67,3 +63,10 @@ const SuggestionList = () => {
 };
 
 export default SuggestionList;
+// {feedback.length ? (
+//   feedback.map((item, index) => {
+//     return <Suggestion key={item.id} index={index} {...item} />;
+//   })
+// ) : (
+//   <SuggestionEmpty />
+// )}

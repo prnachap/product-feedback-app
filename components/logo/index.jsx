@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 
+import { hamburgerVaraint } from "../../animation";
 import ToggleSidebarContext from "../../context/toggle-sidebar/ToggleSidebarContext";
-import { hamburgerVaraint } from "../animation";
 
 import styles from "./Logo.module.scss";
 
@@ -12,7 +12,7 @@ const Logo = () => {
 
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.titleWrapper}>
         <span className={styles.title}>Frontend Mentor</span>
         <span className={styles.subTitle}>Feedback Board</span>
       </div>

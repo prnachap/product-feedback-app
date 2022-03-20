@@ -1,5 +1,6 @@
 import React from "react";
-import FeedbackDetail from "../components/feedback-detail/FeedbackDetail";
+
+import FeedbackDetail from "../../components/feedback-detail/FeedbackDetail";
 
 const FeedbackDetailPage = () => {
   return (

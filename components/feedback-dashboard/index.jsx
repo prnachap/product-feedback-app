@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import ToggleSidebarContext from "../../context/toggle-sidebar/ToggleSidebarContext";
 
 import Sidebar from "../sidebar-desktop";
 import SidebarMobile from "../sidebar-mobile";
 import SuggestionBar from "../suggestion-bar";
 import SuggestionList from "../suggestions/SuggestionList";
+import ToggleSidebarContext from "../../context/toggle-sidebar/ToggleSidebarContext";
 
 const FeedbackDashboard = () => {
   const [openMobileSidebar, setOpenMobileSidebar] = useState(false);
