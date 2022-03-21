@@ -5,13 +5,18 @@
   border: none;
   color: $very-pale-blue;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 13px;
   font-weight: 700;
   line-height: 18.79px;
   padding: 10.5px 16px;
   outline: none;
   text-transform: capitalize;
+  &:disabled {
+    pointer-events: none;
+  }
   @media screen and (min-width: 769px) {
     font-size: 14px;
     line-height: 20.23px;

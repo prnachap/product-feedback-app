@@ -1,6 +1,7 @@
 import React from "react";
 import cls from "classnames";
 
+import Loader from "../loader/Loader";
 import styles from "./Button.module.scss";
 
 const defaultProps = {
@@ -10,7 +11,8 @@ const defaultProps = {
 };
 
 const Button = (props) => {
-  const { children, className, href, as, variant, ...restProps } = props;
+  const { children, className, href, as, variant, isLoading, ...restProps } =
+    props;
 
   let Component = as;
 
@@ -21,15 +23,17 @@ const Button = (props) => {
     } else {
       Component = "button";
       restProps.type ??= "button";
+      restProps.disabled = isLoading ? true : false;
     }
   }
-
+  const loaderStyles = isLoading ? styles.flexDisplay : styles.inlineDisplay;
   return (
     <Component
       className={cls(styles.button, styles[variant], className)}
       {...restProps}
     >
-      {props.children}
+      <span>{props.children}</span>
+      <Loader isLoading={isLoading} />
     </Component>
   );
 };
