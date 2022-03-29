@@ -3,21 +3,22 @@ import { typeList } from "../../constants";
 
 import styles from "./FilterBoard.module.scss";
 import useFeedBackContext from "../../hooks/useFeedBackContext";
+import { setCategory } from "../../context/feedback/feedbackAction";
 
 const FilterBoard = () => {
   const filterOptions = typeList.filterBy;
   const {
     state: { category: activePill },
-    setCategory,
+    dispatch,
   } = useFeedBackContext();
 
   const handleActivePill = (pillName) => {
-    setCategory(pillName);
+    setCategory(dispatch, pillName.toLowerCase());
   };
   return (
     <div className={styles.card}>
       {filterOptions.map((option, index) => {
-        const isActive = option === activePill;
+        const isActive = option.toLowerCase() === activePill.toLowerCase();
         return (
           <Pill
             key={`${option}-${index}`}

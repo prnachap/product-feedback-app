@@ -1,5 +1,6 @@
 import React from "react";
 import cls from "classnames";
+import { useField } from "formik";
 
 import styles from "./TextInput.module.scss";
 
@@ -8,20 +9,25 @@ const defaultProps = {
 };
 
 const TextInput = (props) => {
-  const { type, error, className, ...otherProps } = props;
-  const errorClass = error ? "input-error" : "";
+  const [field, meta] = useField(props);
+  const { type, ...otherProps } = props;
+  const hasError = meta.touched && meta.error ? true : false;
+  const errorClass = hasError ? "input-error" : "";
   return (
     <div className={styles.inputWrapper}>
       {type === "text-area" ? (
-        <textarea {...otherProps} className={cls("input", errorClass)} />
+        <textarea {...field} {...otherProps} className={cls("input")} />
       ) : (
         <input
           type={type}
+          {...field}
           {...otherProps}
           className={cls("input", errorClass)}
         />
       )}
-      {error && <span className={cls("error", styles.error)}>{error}</span>}
+      {hasError && (
+        <span className={cls("error", styles.error)}>{meta.error}</span>
+      )}
     </div>
   );
 };

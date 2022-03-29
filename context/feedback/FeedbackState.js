@@ -11,24 +11,8 @@ const FeedBackState = ({ children }) => {
 
   const [state, dispatch] = useReducer(feedbackReducer, initialState);
 
-  //   setFeedbackData
-  const setData = (data) =>
-    dispatch({ type: actionTypes.SET_FEEDBACK_DATA, payload: data });
-
-  // filterbycategory
-  const setCategory = (category) => {
-    dispatch({ type: actionTypes.SET_CATEGORY, payload: category });
-  };
-
-  // update votes
-  const updateVote = (id) => {
-    dispatch({ type: actionTypes.UPDATE_VOTE, payload: id });
-  };
-
   return (
-    <FeedBackContext.Provider
-      value={{ state, setData, setCategory, updateVote }}
-    >
+    <FeedBackContext.Provider value={{ state, dispatch }}>
       {children}
     </FeedBackContext.Provider>
   );

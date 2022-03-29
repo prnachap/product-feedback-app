@@ -7,6 +7,7 @@ import Loader from "../../ui/loader/Loader";
 
 import useFeedBackContext from "../../hooks/useFeedBackContext";
 import { useFeedbackData } from "../../hooks/useFeedbackData";
+import { setData } from "../../context/feedback/feedbackAction";
 
 import styles from "./SuggestionList.module.scss";
 
@@ -22,8 +23,8 @@ const parentCardVariant = {
 
 const SuggestionList = () => {
   const {
-    setData,
     state: { feedback, category },
+    dispatch,
   } = useFeedBackContext();
 
   const { isLoading, isError, data } = useFeedbackData(category, {
@@ -32,10 +33,9 @@ const SuggestionList = () => {
 
   useEffect(() => {
     if (data) {
-      setData(data);
+      setData(dispatch, data);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, category]);
+  }, [data, category, dispatch]);
 
   if (isLoading) {
     return (
@@ -68,10 +68,3 @@ const SuggestionList = () => {
 };
 
 export default SuggestionList;
-// {feedback.length ? (
-//   feedback.map((item, index) => {
-//     return <Suggestion key={item.id} index={index} {...item} />;
-//   })
-// ) : (
-//   <SuggestionEmpty />
-// )}

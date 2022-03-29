@@ -2,12 +2,20 @@ import { actionTypes } from "../type";
 
 /* eslint-disable import/no-anonymous-default-export */
 
+function sortFeedbackData(data, sortBy) {
+  if (sortBy === "most upvotes") {
+    data.sort((a, b) => a.upvotes - b.upvotes);
+  } else if (sortBy === "least upvotes") {
+    data.sort((a, b) => b.upvotes - a.upvotes);
+  }
+}
+
 export default (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
     case actionTypes.SET_FEEDBACK_DATA:
-      return { ...state, feedback: payload };
+      return { ...state, feedback: payload, filteredData: payload };
     case actionTypes.SET_CATEGORY:
       return {
         ...state,
@@ -23,14 +31,6 @@ export default (state, action) => {
             return item;
           }
         }),
-        // feedback: [
-        //   ...state.feedback.slice(0, payload),
-        //   {
-        //     ...state.feedback[payload],
-        //     upvotes: state.feedback[payload].upvotes + 1,
-        //   },
-        //   ...state.feedback.slice(payload),
-        // ],
       };
     default:
       return state;

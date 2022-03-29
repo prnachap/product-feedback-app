@@ -9,6 +9,7 @@ import ArrowUp from "../../public/assets/shared/icon-arrow-up.svg";
 import { useQuery } from "react-query";
 import { updateVotes } from "../../services/updateVotes";
 import useFeedBackContext from "../../hooks/useFeedBackContext";
+import { updateVote } from "../../context/feedback/feedbackAction";
 
 import styles from "./Suggestion.module.scss";
 
@@ -24,7 +25,7 @@ const cardVariants = {
 
 const Suggestion = (props) => {
   const { id, title, description, category, upvotes, comments, index } = props;
-  const { updateVote } = useFeedBackContext();
+  const { dispatch } = useFeedBackContext();
 
   const { data, refetch } = useQuery(["upVotes", id, upvotes], updateVotes, {
     enabled: false,
@@ -32,10 +33,9 @@ const Suggestion = (props) => {
 
   useEffect(() => {
     if (data) {
-      updateVote(index);
+      updateVote(dispatch, index);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, dispatch, index]);
 
   return (
     <article>
