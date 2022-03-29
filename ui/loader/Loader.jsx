@@ -35,8 +35,12 @@ const childrenVariants = {
   },
 };
 
+const defaultProps = {
+  varaint: "primary",
+};
+
 const Loader = (props) => {
-  const { isLoading, className } = props;
+  const { isLoading, className, variant = "primary" } = props;
   return (
     <AnimatePresence>
       {isLoading && (
@@ -46,15 +50,15 @@ const Loader = (props) => {
           className={styles.loaderContainer}
         >
           <motion.div
-            className={cls(styles.loader)}
+            className={cls(styles.loader, styles[variant])}
             variants={childrenVariants}
           ></motion.div>
           <motion.div
-            className={cls(styles.loader, className)}
+            className={cls(styles.loader, styles[variant])}
             variants={childrenVariants}
           ></motion.div>
           <motion.div
-            className={cls(styles.loader, className)}
+            className={cls(styles.loader, styles[variant])}
             variants={childrenVariants}
           ></motion.div>
         </motion.div>
@@ -62,5 +66,5 @@ const Loader = (props) => {
     </AnimatePresence>
   );
 };
-
+Loader.defaultProps = defaultProps;
 export default Loader;

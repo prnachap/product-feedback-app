@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 
 import Suggestion from "./Suggestion";
 import SuggestionEmpty from "./SuggestionEmpty";
+import Loader from "../../ui/loader/Loader";
 
 import useFeedBackContext from "../../hooks/useFeedBackContext";
 import { useFeedbackData } from "../../hooks/useFeedbackData";
@@ -37,7 +38,11 @@ const SuggestionList = () => {
   }, [data, category]);
 
   if (isLoading) {
-    return <div>Loading....</div>;
+    return (
+      <div className={styles.spinnerWrapper}>
+        <Loader isLoading={isLoading} variant="secondary" />
+      </div>
+    );
   }
 
   if (isError) {
