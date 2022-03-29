@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import Button from "../../../ui/button/Button";
@@ -12,6 +12,7 @@ import { getOptionsForDropdown } from "../../../utils";
 import { typeList } from "../../../constants";
 
 import styles from "./EditFeedback.module.scss";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 
 const categoryOptions = typeList["filterBy"];
 const statusOptions = typeList["status"];
@@ -32,6 +33,14 @@ const EditFeedback = () => {
   const { title, category, description } = formState;
   const { titleError, categoryError, descriptionError } = formErrors;
   const { push, back } = useRouter();
+  const {
+    state: { currentUser },
+  } = useAuthContext();
+
+  useEffect(() => {
+    if (!currentUser) push("/login");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });

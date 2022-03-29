@@ -22,6 +22,27 @@
     background-image: url("/assets/suggestions/desktop/background-header.png");
   }
 
+  .logoutIconWrapper {
+    position: absolute;
+    left: 1.5rem;
+    top: 10%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+
+    @media screen and (max-width: 769px) {
+      display: none;
+    }
+  }
+
+  .logoutIcon {
+    width: 20px;
+    height: 20px;
+    fill: $white;
+    cursor: pointer;
+  }
+
   .titleWrapper {
     display: flex;
     flex-direction: column;

@@ -10,6 +10,7 @@
     "server-json": "json-server --watch db.json --port 4001"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.8.8",
     "@svgr/webpack": "^6.2.1",
     "axios": "^0.26.0",
     "classnames": "^2.3.1",
@@ -19,9 +20,11 @@
     "normalize.css": "^8.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.28.1",
     "react-query": "^3.34.16",
     "sass": "^1.49.8",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "eslint": "8.9.0",

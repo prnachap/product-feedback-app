@@ -11,6 +11,7 @@ import { typeList } from "../../constants";
 import useFeedBackContext from "../../hooks/useFeedBackContext";
 
 import styles from "./Suggestion.module.scss";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const sortOptions = typeList["sortBy"];
 
@@ -21,8 +22,17 @@ const SuggestionBar = () => {
     state: { feedback },
   } = useFeedBackContext();
 
+  const {
+    state: { currentUser },
+  } = useAuthContext();
+
   const handleMenu = (e) => {
     setDropDownMenu(e.target.value);
+  };
+
+  const handleAddFeedback = () => {
+    if (!currentUser) return router.push("/login");
+    router.push("/create-feedback");
   };
 
   return (
@@ -38,10 +48,7 @@ const SuggestionBar = () => {
         value={dropDownMenu}
         onChange={handleMenu}
       />
-      <Button
-        className={styles.button}
-        onClick={() => router.push("/create-feedback")}
-      >
+      <Button className={styles.button} onClick={handleAddFeedback}>
         <PlusIcon /> Add Feedback
       </Button>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -12,6 +12,7 @@ import NewFeedbackIcon from "../../../public/assets/shared/icon-new-feedback.svg
 import { typeList } from "../../../constants";
 
 import styles from "./CreateFeedback.module.scss";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 
 const CreateFeedback = () => {
   const categories = typeList["filterBy"];
@@ -31,6 +32,14 @@ const CreateFeedback = () => {
   const { title, category, description } = formState;
   const { titleError, categoryError, descriptionError } = formErrors;
   const { push } = useRouter();
+  const {
+    state: { currentUser },
+  } = useAuthContext();
+
+  useEffect(() => {
+    if (!currentUser) push("/login");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
 
 import FilterBoard from "../filter-board";
@@ -8,10 +9,26 @@ import { overlayVariants, sidebarVariants } from "../../animation";
 import ToggleSidebarContext from "../../context/toggle-sidebar/ToggleSidebarContext";
 
 import styles from "./SidebarMobile.module.scss";
+import Button from "../../ui/button/Button";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const SidebarMobile = (props) => {
   const toggleSidebarContext = useContext(ToggleSidebarContext);
+  const {
+    state: { currentUser },
+  } = useAuthContext();
   const { openMobileSidebar } = toggleSidebarContext;
+  const { push } = useRouter();
+
+  const handleLogin = () => {
+    if (!currentUser) {
+      push("/login");
+    } else {
+      removeCurrentUser(dispatch);
+      localStorage.removeItem("token");
+      push("/login");
+    }
+  };
   return (
     <AnimatePresence exitBeforeEnter>
       {openMobileSidebar && (
@@ -33,6 +50,9 @@ const SidebarMobile = (props) => {
           >
             <FilterBoard />
             <StatusBoard />
+            <Button onClick={handleLogin}>
+              {currentUser ? "Logout" : "Login"}
+            </Button>
           </motion.div>
         </>
       )}

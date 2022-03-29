@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import cls from "classnames";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 import Button from "../../../ui/button/Button";
 import Card from "../../../ui/card/Card";
 import TextInput from "../../../ui/forms/text-input/TextInput";
 
 import styles from "./Login.module.scss";
+import { useQuery } from "react-query";
+import { login } from "../../../services/login";
+import { useRouter } from "next/router";
+import Loader from "../../../ui/loader/Loader";
 
 const Login = () => {
+  const { push } = useRouter();
   const [formState, setFormState] = useState({
     email: "",
     password: "",
@@ -18,9 +24,23 @@ const Login = () => {
     emailError: "",
     passwordError: "",
   });
-
   const { email, password } = formState;
   const { emailError, passwordError } = formErrors;
+
+  const { data, error, isLoading, refetch } = useQuery(
+    ["login", { ...formState }],
+    login,
+    {
+      enabled: false,
+    }
+  );
+
+  useEffect(() => {
+    if (!isLoading && !error && data) {
+      localStorage.setItem("token", JSON.stringify(data.data.token));
+      push("/");
+    }
+  }, [data, error, isLoading, push]);
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -28,9 +48,10 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (email && password) {
       setFormErrors({ ...formErrors, emailError: "", passwordError: "" });
-      alert(formState);
+      refetch();
     } else {
       let allErrors = {};
       Object.keys(formState).forEach((key) => {
@@ -41,11 +62,9 @@ const Login = () => {
       setFormErrors({ ...formErrors, ...allErrors });
     }
   };
-
   return (
     <div className={styles.loginContainer}>
       <Card>
-        <h1>Login</h1>
         <div className={styles.welcomeWrapper}>
           <h3>Login to your account</h3>
           <p className={styles.welcomeText}>Thank you for getting back 🛩️</p>
@@ -56,7 +75,7 @@ const Login = () => {
               Email
             </label>
             <TextInput
-              type="text"
+              type="email"
               className="input"
               id="email"
               name="email"
@@ -92,8 +111,11 @@ const Login = () => {
               <a className={styles.link}>Forget password?</a>
             </Link>
           </div>
-          <Button type="submit">Login</Button>
+          <Button type="submit" isLoading={isLoading}>
+            Login
+          </Button>
         </form>
+        <p className="error">Invalid Credentials</p>
         <span className={styles.register}>
           Dont have an account yet?{" "}
           <Link href="/register" passHref>
