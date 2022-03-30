@@ -1,0 +1,27 @@
+@import "../../styles/variables";
+
+.alert {
+  width: 100%;
+  padding: 1rem;
+  border-radius: $border-radius-sm;
+  font-weight: 600;
+  position: relative;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.success {
+  background: $violet;
+  color: $white;
+}
+.danger {
+  background: $red;
+  color: $very-pale-blue;
+}
+.icon {
+  height: 15px;
+  width: 15px;
+  fill: $white;
+  cursor: pointer;
+}

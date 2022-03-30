@@ -11,11 +11,13 @@ import ToggleSidebarContext from "../../context/toggle-sidebar/ToggleSidebarCont
 import styles from "./SidebarMobile.module.scss";
 import Button from "../../ui/button/Button";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { removeCurrentUser } from "../../context/authContext/authActions";
 
 const SidebarMobile = (props) => {
   const toggleSidebarContext = useContext(ToggleSidebarContext);
   const {
     state: { currentUser },
+    dispatch,
   } = useAuthContext();
   const { openMobileSidebar } = toggleSidebarContext;
   const { push } = useRouter();

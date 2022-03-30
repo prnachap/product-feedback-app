@@ -8,7 +8,7 @@ import ToggleSidebarContext from "../../context/toggle-sidebar/ToggleSidebarCont
 import { useQuery } from "react-query";
 import { getCurrentUser } from "../../services/getCurrentUser";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import { setCurrentUser } from "../../context/authContext/AuthActions.Js";
+import { setCurrentUser } from "../../context/authContext/authActions.js";
 
 const FeedbackDashboard = () => {
   const [openMobileSidebar, setOpenMobileSidebar] = useState(false);

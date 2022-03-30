@@ -12,6 +12,8 @@ import styles from "./Login.module.scss";
 import { useMutation } from "react-query";
 import { login } from "../../../services/login";
 import { useRouter } from "next/router";
+import { useSaveToken } from "../../../hooks/useSaveToken";
+import Alert from "../../../ui/alert/Alert";
 
 const initialValues = {
   email: "",
@@ -27,19 +29,20 @@ const validationSchema = yup.object({
 });
 
 const Login = () => {
-  const { push } = useRouter();
-  const { mutate, isLoading } = useMutation(login, {
-    onSuccess: (data) => {
-      localStorage.setItem("token", JSON.stringify(data.data.token));
-      push("/");
-    },
-  });
-
+  const { mutate, isLoading, error, isError, data } = useSaveToken(login);
   const handleSubmit = (values) => {
     mutate(values);
   };
   return (
     <div className={styles.loginContainer}>
+      {console.log(data)}
+      {isError && (
+        <div className={styles.alertWrapper}>
+          <Alert variant="danger" withIcon>
+            Invalid Credential
+          </Alert>
+        </div>
+      )}
       <Card>
         <div className={styles.welcomeWrapper}>
           <h3>Login to your account</h3>

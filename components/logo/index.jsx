@@ -9,7 +9,7 @@ import LoginIcon from "../../public/assets/shared/login.svg";
 
 import styles from "./Logo.module.scss";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import { removeCurrentUser } from "../../context/authContext/AuthActions.js";
+import { removeCurrentUser } from "../../context/authContext/authActions.js";
 
 const Logo = () => {
   const toggleSidebarContext = useContext(ToggleSidebarContext);
