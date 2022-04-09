@@ -1,6 +1,29 @@
 import styled from "styled-components";
 import { css } from "styled-components";
 
+export const Container = styled.div`
+  position: relative;
+  ${({ requiresTimeline }) =>
+    requiresTimeline &&
+    css`
+      &::before {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: ${({ firstReplyHeight, lastReplyHeight }) =>
+          `${40 + (firstReplyHeight ?? lastReplyHeight) + 32 + 26 + 20}px`};
+        width: 1px;
+        bottom: ${({ lastReplyHeight, firstReplyHeight }) =>
+          `${(lastReplyHeight || firstReplyHeight) - 20 + 8}px`};
+        background: rgba(100, 113, 150, 0.1);
+
+        @media screen and (min-width: 769px) {
+          top: 56px;
+        }
+      }
+    `}
+`;
+
 export const CommentWrapper = styled.div`
   margin-top: 1.5rem;
   display: grid;
@@ -9,32 +32,15 @@ export const CommentWrapper = styled.div`
   grid-row-gap: 1rem;
   position: relative;
 
-  &:not(:last-child):not(.replyWrapper) {
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(100, 113, 150, 0.1);
-  }
-
-  ${({ className }) =>
-    className
+  ${({ type }) =>
+    type
       ? css`
-          &::before {
-            content: "";
-            position: absolute;
-            left: 20px;
-            top: ${({ firstReplyHeight }) =>
-              `${40 + firstReplyHeight + 32 + 26 + 20}px`};
-            width: 1px;
-            bottom: ${({ lastReplyHeight }) => `${lastReplyHeight - 20 + 8}px`};
-            background: rgba(100, 113, 150, 0.1);
-
-            @media screen and (min-width: 769px) {
-              top: 56px;
-            }
+          margin-left: 40px;
+          @media screen and (min-width: 769px) {
+            margin-top: 2rem;
           }
         `
-      : ""}
-  .timeline {
-  }
+      : ``}
 
   @media screen and (min-width: 769px) {
     margin-top: 1.75rem;
