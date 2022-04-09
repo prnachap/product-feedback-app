@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import Button from "../../ui/button/Button";
+import Loader from "../../ui/loader/Loader";
 
 import AddComment from "../comments/add-comment";
 import ChevronLeft from "../../public/assets/shared/icon-arrow-left.svg";
@@ -23,7 +24,7 @@ const FeedbackDetail = () => {
     ["feedbackById", id],
     getFeedbackById,
     {
-      select: (data) => data.data,
+      select: (data) => data.data.data,
     }
   );
 
@@ -35,28 +36,37 @@ const FeedbackDetail = () => {
     <div>
       <nav className={styles.navigationWrapper}>
         <Link href="/" passHref>
-          <Button variant="destructive">
-            <ChevronLeft /> Go Back
-          </Button>
+          <a>
+            <Button variant="destructive">
+              <ChevronLeft /> Go Back
+            </Button>
+          </a>
         </Link>
-
         <Button variant="secondary" onClick={handleEditFeedback}>
           Edit Feedback
         </Button>
       </nav>
       <main>
-        {isLoading && <div>is loading...</div>}
-        {data && (
+        {isLoading && (
+          <div className={styles.spinnerWrapper}>
+            <Loader isLoading={isLoading} variant="secondary" />
+          </div>
+        )}
+        {data && !isLoading && (
           <section className={styles.feedbackWrapper}>
             <Suggestion {...data} />
           </section>
         )}
-        <section className={styles.commentWrapper}>
-          <CommentList {...data} />
-        </section>
-        <section>
-          <AddComment {...data} />
-        </section>
+        {data && !isLoading && (
+          <section className={styles.commentWrapper}>
+            <CommentList {...data} />
+          </section>
+        )}
+        {data && !isLoading && (
+          <section>
+            <AddComment {...data} />
+          </section>
+        )}
       </main>
     </div>
   );
