@@ -9,9 +9,7 @@ import Card from "../../../ui/card/Card";
 import TextInput from "../../../ui/forms/text-input/TextInput";
 
 import styles from "./Login.module.scss";
-import { useMutation } from "react-query";
 import { login } from "../../../services/login";
-import { useRouter } from "next/router";
 import { useSaveToken } from "../../../hooks/useSaveToken";
 import Alert from "../../../ui/alert/Alert";
 
@@ -29,13 +27,12 @@ const validationSchema = yup.object({
 });
 
 const Login = () => {
-  const { mutate, isLoading, error, isError, data } = useSaveToken(login);
+  const { mutate, isLoading, isError } = useSaveToken(login);
   const handleSubmit = (values) => {
     mutate(values);
   };
   return (
     <div className={styles.loginContainer}>
-      {console.log(data)}
       {isError && (
         <div className={styles.alertWrapper}>
           <Alert variant="danger" withIcon>

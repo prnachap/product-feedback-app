@@ -3,8 +3,8 @@ import cls from "classnames";
 import Link from "next/link";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
-import { useMutation } from "react-query";
 
+import Alert from "../../../ui/alert/Alert";
 import Button from "../../../ui/button/Button";
 import Card from "../../../ui/card/Card";
 import TextInput from "../../../ui/forms/text-input/TextInput";
@@ -39,14 +39,20 @@ const validationSchema = yup.object({
 });
 
 const Register = () => {
-  const { mutate, isLoading, error } = useSaveToken(signUp);
+  const { mutate, isLoading, isError } = useSaveToken(signUp);
 
   const handleSubmit = (values) => {
-    console.log(values);
     mutate(values);
   };
   return (
     <div className={styles.loginContainer}>
+      {isError && (
+        <div className={styles.alertWrapper}>
+          <Alert variant="danger" withIcon>
+            Invalid Credential
+          </Alert>
+        </div>
+      )}
       <Card>
         <h1>Register</h1>
         <div className={styles.welcomeWrapper}>
@@ -127,7 +133,9 @@ const Register = () => {
                 placeholder="confirm password"
               />
             </div>
-            <Button type="submit">Register</Button>
+            <Button type="submit" isLoading={isLoading}>
+              Register
+            </Button>
           </Form>
         </Formik>
         <span className={styles.register}>
