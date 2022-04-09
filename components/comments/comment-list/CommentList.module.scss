@@ -4,3 +4,10 @@
 .comment {
   text-transform: capitalize;
 }
+
+.commentsContainer {
+  & > div:not(:last-child) {
+    border-bottom: 1px solid rgba(100, 113, 150, 0.1);
+    padding-bottom: 1.5rem;
+  }
+}
