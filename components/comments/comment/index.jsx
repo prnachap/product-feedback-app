@@ -53,7 +53,6 @@ const Comment = (props) => {
     : null;
 
   const handleReplies = (values) => {
-    console.log(values);
     setShowTextInput(false);
   };
   return (
