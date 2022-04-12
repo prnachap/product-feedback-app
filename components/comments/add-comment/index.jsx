@@ -1,76 +1,63 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
-import { useQuery } from "react-query";
+import { Formik, Form } from "formik";
+import * as yup from "yup";
 
 import Button from "../../../ui/button/Button";
 import Card from "../../../ui/card/Card";
 import TextInput from "../../../ui/forms/text-input/TextInput";
 
-import { useFormError } from "../../../hooks/useFormError";
-import { addComment } from "../../../services/addComment";
 import { getRemainingCharacters } from "../../../utils";
+import { useAddComments } from "../../../hooks/useFeedbackData";
 
 import styles from "./AddComment.module.scss";
 
+const initialState = {
+  comment: "",
+};
+
+const validationSchema = yup.object({
+  comment: yup.string().required("can't be empty"),
+});
+
 const AddComment = (props) => {
-  const [textInput, setTextInput] = useState("");
-  const [error, setError] = useFormError();
   const {
     query: { id },
   } = useRouter();
 
-  const {
-    data,
-    error: failed,
-    refetch,
-  } = useQuery(
-    [
-      "add-comment",
-      id,
-      { previousComments: props.comments, newComment: textInput },
-    ],
-    addComment,
-    {
-      enabled: false,
-    }
-  );
+  const { mutate } = useAddComments();
 
-  const handleTextInput = (e) => {
-    if (e.target.value.length <= 250) {
-      setTextInput(e.target.value);
-    }
-    if (error && e.target.value) {
-      setError("");
-    }
-  };
-
-  const handleClick = () => {
-    refetch();
-    if (!textInput) {
-      setError("Can't be empty");
-    } else {
-      if (!failed) {
-      }
-      setError("");
-    }
+  const handleNewComment = (values, { resetForm }) => {
+    mutate({ id, content: values });
+    resetForm({ comment: "" });
   };
 
   return (
     <Card>
       <h3 className={styles.title}>Add comment</h3>
-      <TextInput
-        rows="4"
-        value={textInput}
-        onChange={handleTextInput}
-        placeholder="Type your comment here"
-        error={error}
-      />
-      <div className={styles.wrapper}>
-        <span className={styles.characterLimit}>{`${getRemainingCharacters(
-          textInput
-        )} Characters left`}</span>
-        <Button onClick={handleClick}>Post Comment</Button>
-      </div>
+      <Formik
+        initialValues={initialState}
+        validationSchema={validationSchema}
+        onSubmit={handleNewComment}
+      >
+        {(values) => (
+          <Form>
+            <TextInput
+              rows="4"
+              name="comment"
+              placeholder="Type your comment here"
+            />
+            <div className={styles.wrapper}>
+              <span
+                className={styles.characterLimit}
+              >{`${getRemainingCharacters(
+                values.values.comment
+              )} Characters left`}</span>
+              <Button type="submit">Post Comment</Button>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </Card>
   );
 };
