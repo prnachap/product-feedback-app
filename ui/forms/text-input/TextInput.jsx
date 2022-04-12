@@ -16,7 +16,11 @@ const TextInput = (props) => {
   return (
     <div className={styles.inputWrapper}>
       {type === "text-area" ? (
-        <textarea {...field} {...otherProps} className={cls("input")} />
+        <textarea
+          {...field}
+          {...otherProps}
+          className={cls("input", errorClass)}
+        />
       ) : (
         <input
           type={type}

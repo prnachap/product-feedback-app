@@ -25,6 +25,7 @@ const FeedbackDetail = () => {
     getFeedbackById,
     {
       select: (data) => data.data.data,
+      staleTime: 3000,
     }
   );
 

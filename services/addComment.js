@@ -1,25 +1,16 @@
 import axios from "axios";
+import { getTokenFromLocalStorage } from "../utils";
 
-export const addComment = ({ queryKey }) => {
-  const [_, id, comments] = queryKey;
-  const { previousComments, newComment } = comments;
-  const addedComment = {
-    id: previousComments.length + 1,
-    content: newComment,
-    user: {
-      image: "./assets/user-images/image-victoria.jpg",
-      name: "Victoria Mejia",
-      username: "arlen_the_marlin",
-    },
-  };
-  return axios.patch(
-    `http://localhost:4001/productRequests/${id}`,
-    {
-      comments: [...previousComments, addedComment],
-    },
+export const addComment = (data) => {
+  const { id, content } = data;
+
+  return axios.post(
+    `http://localhost:5000/api/v1/feedbacks/${id}/comments`,
+    { content: content.comment },
     {
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${getTokenFromLocalStorage()}`,
       },
     }
   );

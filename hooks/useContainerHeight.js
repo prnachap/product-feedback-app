@@ -10,8 +10,8 @@ export const useContainerHeight = (firstRef, secondRef) => {
     const handleResize = () => {
       setContainerHeights({
         ...containerHeights,
-        firstReplyHeight: firstRef.current.clientHeight,
-        lastReplyHeight: secondRef.current.clientHeight,
+        firstReplyHeight: firstRef?.current?.clientHeight,
+        lastReplyHeight: secondRef?.current?.clientHeight,
       });
     };
     window.addEventListener("resize", handleResize);
@@ -22,8 +22,8 @@ export const useContainerHeight = (firstRef, secondRef) => {
   useEffect(() => {
     setContainerHeights({
       ...containerHeights,
-      firstReplyHeight: firstRef.current.clientHeight,
-      lastReplyHeight: secondRef.current.clientHeight,
+      firstReplyHeight: firstRef?.current?.clientHeight,
+      lastReplyHeight: secondRef?.current?.clientHeight,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

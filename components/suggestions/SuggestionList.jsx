@@ -21,21 +21,22 @@ const parentCardVariant = {
   },
 };
 
-const SuggestionList = () => {
+const SuggestionList = ({ category, sortBy }) => {
   const {
-    state: { feedback, category },
+    state: { feedback },
     dispatch,
   } = useFeedBackContext();
 
-  const { isLoading, isError, data } = useFeedbackData(category, {
+  const { isLoading, isError, data } = useFeedbackData(category, sortBy, {
     refetchOnWindowFocus: true,
+    staleTime: 120000,
   });
 
   useEffect(() => {
     if (data) {
       setData(dispatch, data);
     }
-  }, [data, category, dispatch]);
+  }, [data, category, sortBy, dispatch]);
 
   if (isLoading) {
     return (
@@ -48,7 +49,6 @@ const SuggestionList = () => {
   if (isError) {
     return <div>something went wrong</div>;
   }
-
   return (
     <motion.div
       initial="hidden"
@@ -58,7 +58,7 @@ const SuggestionList = () => {
     >
       {feedback.length ? (
         feedback.map((item, index) => {
-          return <Suggestion key={item.id} index={index} {...item} />;
+          return <Suggestion key={item._id} index={index} {...item} />;
         })
       ) : (
         <SuggestionEmpty />
