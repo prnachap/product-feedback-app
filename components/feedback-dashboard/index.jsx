@@ -1,21 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 
 import Sidebar from "../sidebar-desktop";
 import SidebarMobile from "../sidebar-mobile";
 import SuggestionBar from "../suggestion-bar";
 import SuggestionList from "../suggestions/SuggestionList";
-import ToggleSidebarContext from "../../context/toggle-sidebar/ToggleSidebarContext";
-import { useQuery } from "react-query";
+
 import { getCurrentUser } from "../../services/getCurrentUser";
+
+// hooks
 import { useAuthContext } from "../../hooks/useAuthContext";
+
+// actions
 import { setCurrentUser } from "../../context/authContext/authActions.js";
 
+// Provider
+import ToggleProvider from "../../context/toggle-sidebar/ToggleProvider";
+
 const FeedbackDashboard = () => {
-  const [openMobileSidebar, setOpenMobileSidebar] = useState(false);
   const {
     state: { currentUser },
     dispatch,
   } = useAuthContext();
+
+  const [category, setCategory] = useState("all");
+  const [sortBy, setSortBy] = useState("most upvotes");
 
   const { data, isLoading, error } = useQuery("current-user", getCurrentUser, {
     refetchOnWindowFocus: false,
@@ -28,21 +37,17 @@ const FeedbackDashboard = () => {
     }
   }, [data, dispatch, error, isLoading]);
 
-  const handleMobileSidebar = () => setOpenMobileSidebar(!openMobileSidebar);
-
   return (
-    <ToggleSidebarContext.Provider
-      value={{ openMobileSidebar, handleMobileSidebar }}
-    >
-      <div className="container">
-        <Sidebar />
-        <SidebarMobile />
-        <div className="suggestion">
-          <SuggestionBar />
-          <SuggestionList />
-        </div>
+    <div className="container">
+      <ToggleProvider>
+        <Sidebar category={category} setCategory={setCategory} />
+        <SidebarMobile category={category} setCategory={setCategory} />
+      </ToggleProvider>
+      <div className="suggestion">
+        <SuggestionBar sortBy={sortBy} setSortBy={setSortBy} />
+        <SuggestionList category={category} sortBy={sortBy} />
       </div>
-    </ToggleSidebarContext.Provider>
+    </div>
   );
 };
 

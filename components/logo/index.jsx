@@ -1,24 +1,30 @@
-import React, { useContext } from "react";
+import React, { memo } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 
-import { hamburgerVaraint } from "../../animation";
-import ToggleSidebarContext from "../../context/toggle-sidebar/ToggleSidebarContext";
+// hooks
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useToggleState } from "../../hooks/useToggleState";
+
+// icons
 import LogoutIcon from "../../public/assets/shared/logout.svg";
 import LoginIcon from "../../public/assets/shared/login.svg";
 
-import styles from "./Logo.module.scss";
-import { useAuthContext } from "../../hooks/useAuthContext";
+// animation variants
+import { hamburgerVaraint } from "../../animation";
+
+// actions
 import { removeCurrentUser } from "../../context/authContext/authActions.js";
 
-const Logo = () => {
-  const toggleSidebarContext = useContext(ToggleSidebarContext);
+import styles from "./Logo.module.scss";
+
+function Logo() {
   const {
     state: { currentUser },
     dispatch,
   } = useAuthContext();
   const { push } = useRouter();
-  const { openMobileSidebar, handleMobileSidebar } = toggleSidebarContext;
+  const [open, setOpen] = useToggleState();
 
   const handleLogin = () => {
     if (!currentUser) {
@@ -44,12 +50,12 @@ const Logo = () => {
         <span className={styles.title}>Frontend Mentor</span>
         <span className={styles.subTitle}>Feedback Board</span>
       </div>
-      <div className={styles.menuIcon} onClick={handleMobileSidebar}>
+      <div className={styles.menuIcon} onClick={() => setOpen(!open)}>
         <motion.svg width="20" height="17" xmlns="http://www.w3.org/2000/svg">
           <g fill="#FFF" fillRule="evenodd">
             <motion.path
               initial="initial"
-              animate={openMobileSidebar ? "final" : "initial"}
+              animate={open ? "final" : "initial"}
               variants={hamburgerVaraint}
               d="M0 0h20v3H0zM0 7h20v3H0zM0 14h20v3H0z"
             />
@@ -58,6 +64,7 @@ const Logo = () => {
       </div>
     </div>
   );
-};
+}
 
+Logo = memo(Logo);
 export default Logo;

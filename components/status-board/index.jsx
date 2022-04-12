@@ -1,3 +1,4 @@
+import React, { memo } from "react";
 import Link from "next/link";
 import cls from "classnames";
 
@@ -8,7 +9,7 @@ const statusList = [
   { name: "in-progress", count: 2 },
   { name: "live", count: 3 },
 ];
-const StatusBoard = () => {
+function StatusBoard() {
   return (
     <div className={styles.card}>
       <div className={styles.titleWrapper}>
@@ -32,6 +33,7 @@ const StatusBoard = () => {
       </div>
     </div>
   );
-};
+}
 
+StatusBoard = memo(StatusBoard);
 export default StatusBoard;

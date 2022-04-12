@@ -1,25 +1,25 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
 
+import Button from "../../ui/button/Button";
 import FilterBoard from "../filter-board";
 import StatusBoard from "../status-board";
 
 import { overlayVariants, sidebarVariants } from "../../animation";
-import ToggleSidebarContext from "../../context/toggle-sidebar/ToggleSidebarContext";
 
-import styles from "./SidebarMobile.module.scss";
-import Button from "../../ui/button/Button";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { removeCurrentUser } from "../../context/authContext/authActions";
+import { useToggleState } from "../../hooks/useToggleState";
+
+import styles from "./SidebarMobile.module.scss";
 
 const SidebarMobile = (props) => {
-  const toggleSidebarContext = useContext(ToggleSidebarContext);
   const {
     state: { currentUser },
     dispatch,
   } = useAuthContext();
-  const { openMobileSidebar } = toggleSidebarContext;
+  const [open] = useToggleState();
   const { push } = useRouter();
 
   const handleLogin = () => {
@@ -33,7 +33,7 @@ const SidebarMobile = (props) => {
   };
   return (
     <AnimatePresence exitBeforeEnter>
-      {openMobileSidebar && (
+      {open && (
         <>
           <motion.div
             className={styles.overlay}
@@ -50,7 +50,7 @@ const SidebarMobile = (props) => {
             exit="exit"
             variants={sidebarVariants}
           >
-            <FilterBoard />
+            <FilterBoard category={category} setCategory={setCategory} />
             <StatusBoard />
             <Button onClick={handleLogin}>
               {currentUser ? "Logout" : "Login"}

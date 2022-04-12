@@ -1,24 +1,19 @@
+import React, { memo } from "react";
 import Pill from "../../ui/pill/Pill";
 import { typeList } from "../../constants";
 
 import styles from "./FilterBoard.module.scss";
-import useFeedBackContext from "../../hooks/useFeedBackContext";
-import { setCategory } from "../../context/feedback/feedbackAction";
 
-const FilterBoard = () => {
+function FilterBoard({ category, setCategory }) {
   const filterOptions = typeList.filterBy;
-  const {
-    state: { category: activePill },
-    dispatch,
-  } = useFeedBackContext();
 
   const handleActivePill = (pillName) => {
-    setCategory(dispatch, pillName.toLowerCase());
+    setCategory(pillName.toLowerCase());
   };
   return (
     <div className={styles.card}>
       {filterOptions.map((option, index) => {
-        const isActive = option.toLowerCase() === activePill.toLowerCase();
+        const isActive = option.toLowerCase() === category.toLowerCase();
         return (
           <Pill
             key={`${option}-${index}`}
@@ -32,6 +27,8 @@ const FilterBoard = () => {
       })}
     </div>
   );
-};
+}
+
+FilterBoard = memo(FilterBoard);
 
 export default FilterBoard;

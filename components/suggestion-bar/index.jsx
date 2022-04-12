@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 
 import Button from "../../ui/button/Button";
@@ -15,8 +15,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 
 const sortOptions = typeList["sortBy"];
 
-const SuggestionBar = () => {
-  const [dropDownMenu, setDropDownMenu] = useState("most upvotes");
+const SuggestionBar = ({ sortBy, setSortBy }) => {
   const router = useRouter();
   const {
     state: { feedback },
@@ -27,7 +26,7 @@ const SuggestionBar = () => {
   } = useAuthContext();
 
   const handleMenu = (e) => {
-    setDropDownMenu(e.target.value);
+    setSortBy(e.target.value);
   };
 
   const handleAddFeedback = () => {
@@ -45,7 +44,7 @@ const SuggestionBar = () => {
       <Select
         variant="secondary"
         options={getOptionsForDropdown(sortOptions)}
-        value={dropDownMenu}
+        value={sortBy}
         onChange={handleMenu}
       />
       <Button className={styles.button} onClick={handleAddFeedback}>
